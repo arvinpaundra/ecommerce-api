@@ -15,6 +15,12 @@ In this project, I also use [JWT](https://jwt.io) for authentication and authori
 
 Since this was an experimental and my first project with golang, there are might be tons of errors will appear.
 
+The ERD design of this app.
+
+<p align="center">
+    <img src="assets/images/ERD.png" alt="ERD" title="ERD" />
+</p>
+
 ### Purpose
 
 The purpose of this project is to complete the internship test given by Synapsis.id which build an Ecommerce with RESTful API architecture. Maybe this isn't the best golang API, but at least this is one of my best attempts right now dealing with golang.
