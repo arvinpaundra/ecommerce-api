@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  app:
+    container_name: ecommerce_app
+    build: .
+    ports:
+      - 5000:5000
+    restart: on-failure
+    volumes:
+      - api:/var/lib/app
+    depends_on:
+      - ecommerce-postgres
+    networks:
+      - ecommerce
+
+  ecommerce-postgres:
+    image: postgres:latest
+    container_name: ecommerce_postgres_db
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - DATABASE_HOST=${DB_HOST}
+    ports:
+      - '5432:5432'
+    volumes:
+      - database_postgres:/var/lib/postgresql/data
+    networks:
+      - ecommerce
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    depends_on:
+      - ecommerce-postgres
+    ports:
+      - '5050:80'
+    networks:
+      - ecommerce
+    restart: unless-stopped
+
+volumes:
+  api:
+  database_postgres:
+
+# Networks to be created to facilitate communication between containers
+networks:
+  ecommerce:
+    driver: bridge
