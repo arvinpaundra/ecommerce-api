@@ -108,4 +108,24 @@ http://localhost:5000/
 http://localhost:5050/
 ```
 
-###
+### Note :
+
+Don't forget to create an .env file to store and hide your credentials.
+
+Add this inside your .env file:
+
+```
+# Database Live
+API_SECRET=your_secret
+DB_HOST=your_db_host    # if you're going to use docker uncomment this
+# DB_HOST=your_host     # if you're not use docker uncomment this
+DB_DRIVER=postgres      # driver name of postgresql
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_NAME=your_db_name
+DB_PORT=5432            # default port of postgres
+
+# Used by pgadmin service
+PGADMIN_DEFAULT_EMAIL=your_email            # your email to login into pgadmin
+PGADMIN_DEFAULT_PASSWORD=your_password      # your password to login into pgadmin
+```
